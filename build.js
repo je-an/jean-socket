@@ -18,7 +18,7 @@
         "}));"
     }, 
     paths: {
-        TypeCheck: "../node_modules/jean-type-check/src/TypeCheck",
-        Callback: "../node_modules/jean-callback/src/Callback"
+        TypeCheck: "node_modules/jean-type-check/src/TypeCheck",
+        Callback: "node_modules/jean-callback/src/Callback"
     }
 })
