@@ -43,6 +43,8 @@ require(["path/to/Socket"], function(Socket){
 Provides socket event types
 - `OPEN`: Socket is open
 - `MESSAGE`: Socket get messages
+- `ERROR`: Error happend
+- `CLOSE`: Socket is closed
 
 ### Socket.sendMessage(message) 
 
