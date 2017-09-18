@@ -1,5 +1,5 @@
 define([
-    "src/Socket"
+    "Socket"
 ], function (Socket) {
     describe('Socket.spec.js', function () {
         var url, socket;
