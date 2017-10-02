@@ -38,10 +38,6 @@ define([
                 return WebSocket;
             })();
         });
-
-        /*  afterEach(function(){
-             socket = {};
-         }); */
         describe("Socket", function () {
             beforeEach(function () {
                 url = "ws://echo.websocket.org/";
@@ -51,11 +47,11 @@ define([
                 }, 1000);
                 jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
             });
-            it("TODO: Check if all members are available | EXPECTATION: Callback has all necessary members", function () {
+            it("All necessary members are available", function () {
                 var numberOfMembers = 7;
                 expect(Object.keys(socket).length).toEqual(numberOfMembers);
             });
-            it("TODO: Check if all methods are available | EXPECTATION: Callback has all necessary  methods", function () {
+            it("All necessary methods are available", function () {
                 var numberOfMethods = 6;
                 var methodCount = Object.keys(Object.getPrototypeOf(socket)).length;
                 expect(methodCount).toEqual(numberOfMethods);
@@ -70,10 +66,10 @@ define([
                 }, 1000);
                 jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
             });
-            it("TODO: Send message (Connection is not open already)| EXPECTATION: Message is cached and send after connection is established", function () {
+            it("Caches a message, if connection is not already established", function () {
                 expect(socket.sendMessage({ name: "name" })).toEqual(socket.messageState.CACHED);
             });
-            it("TODO: Send message (Connection is open)| EXPECTATION: Message is send successfully", function (done) {
+            it("Sends message, if connection is established", function (done) {
                 var result = "";
                 setTimeout(function () {
                     result = socket.sendMessage({ name: "name" });
@@ -81,7 +77,7 @@ define([
                     done();
                 }, 2000);
             });
-            it("TODO: Send undefined as message (Connection is open)| EXPECTATION: Message is send successfully", function (done) {
+            it("Sends undefined as a message", function (done) {
                 var result = "";
                 setTimeout(function () {
                     result = socket.sendMessage(undefined);
@@ -89,7 +85,7 @@ define([
                     done();
                 }, 2000);
             });
-            it("TODO: Send null as message (Connection is open)| EXPECTATION: Message is send successfully", function (done) {
+            it("Sends null as a message", function (done) {
                 var result = "";
                 setTimeout(function () {
                     result = socket.sendMessage(null);
@@ -108,33 +104,33 @@ define([
                 }, 1000);
                 jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
             });
-            it("TODO: Register Callback for onopen event | Callback  registered successful", function () {
+            it("Registers callback for onopen event", function () {
                 expect(socket.registerCallback(socket.eventType.OPEN, function () { })).toBe(true);
             });
-            it("TODO: Register Callback for onmessage event | Callback registered successful", function () {
+            it("Registers callback for onmessage event", function () {
                 expect(socket.registerCallback(socket.eventType.MESSAGE, function () { })).toBe(true);
             });
-            it("TODO: Register Callback for onerror event | Callback registered successful", function () {
+            it("Registers callback for onerror event", function () {
                 expect(socket.registerCallback(socket.eventType.ERROR, function () { })).toBe(true);
             });
-            it("TODO: Register Callback for onclose event | Callback registered successful", function () {
+            it("Registers callback for onclose event", function () {
                 expect(socket.registerCallback(socket.eventType.CLOSE, function () { })).toBe(true);
             });
-            it("TODO: Register Callback for onopen event and get notification | Callback get notified successful", function (done) {
+            it("Notifies a callback which was registered for onopen event", function (done) {
                 socket.registerCallback(socket.eventType.OPEN, function () {
                     expect(true).toEqual(true);
                     done();
                 });
                 socket.sendMessage({ name: "name1" });
             });
-            it("TODO: Register Callback for onmessage event and get notification | Callback get notified successful", function (done) {
+            it("Notifies a callback which was registered for onmessage event", function (done) {
                 socket.registerCallback(socket.eventType.MESSAGE, function (message) {
                     expect(message.name).toEqual("name2");
                     done();
                 });
                 socket.sendMessage({ name: "name2" });
             });
-            it("TODO: Register Callback for onerror event and get notification | Callback get notified successful", function (done) {
+            it("Notifies a callback which was registered for onerror event", function (done) {
                 socket.registerCallback(socket.eventType.ERROR, function (message) {
                     expect(message).toEqual("New Error");
                     expect(socket._socket.readyState).toEqual(3);
@@ -142,7 +138,7 @@ define([
                 });
                 socket._socket._error();
             });
-            it("TODO: Register Callback for onclose event and get notification | Callback get notified successful", function (done) {
+            it("Notifies a callback which was registered for onclose event", function (done) {
                 socket.registerCallback(socket.eventType.CLOSE, function (message) {
                     expect(message).toEqual("Connection closed");
                     expect(socket._socket.readyState).toEqual(3);
@@ -150,10 +146,10 @@ define([
                 });
                 socket._socket._close();
             });
-            it("TODO: Try to register Callback but pass a non valid event type | Callback dont get registered", function () {
+            it("Responds with false, if a callback shall be registered for a invalid event type", function () {
                 expect(socket.registerCallback("FalseEventType", function () { })).toBe(false);
             });
-            it("TODO: Try to register something else as callback | Throws type error", function () {
+            it("Throws exception, if something else as a function shall be registered as callback", function () {
                 try {
                     socket.registerCallback(socket.eventType.OPEN, {});
                 } catch (e) {
@@ -187,27 +183,27 @@ define([
                 f = function () { };
                 jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
             });
-            it("TODO: Unregister Callback for onopen event | Callback unregistered successful", function () {
+            it("Unregisters callback for onopen event", function () {
                 socket.registerCallback(socket.eventType.OPEN, f);
                 expect(socket.unregisterCallback(socket.eventType.OPEN, f)).toBe(true);
             });
-            it("TODO: Unregister Callback for onmessage event | Callback unregistered successful", function () {
+            it("Unregisters callback for onmessage event", function () {
                 socket.registerCallback(socket.eventType.MESSAGE, f);
                 expect(socket.unregisterCallback(socket.eventType.MESSAGE, f)).toBe(true);
             });
-            it("TODO: Unregister Callback for onerror event | Callback unregistered successful", function () {
+            it("Unregisters callback for onerror event", function () {
                 socket.registerCallback(socket.eventType.ERROR, f);
                 expect(socket.unregisterCallback(socket.eventType.ERROR, f)).toBe(true);
             });
-            it("TODO: Unregister Callback for onclose event | Callback unregistered successful", function () {
+            it("Unregisters callback for onclose event", function () {
                 socket.registerCallback(socket.eventType.CLOSE, f);
                 expect(socket.unregisterCallback(socket.eventType.CLOSE, f)).toBe(true);
             });
-            it("TODO: Try to unregister Callback for invalid event | Callback dont get unregistered", function () {
+            it("Responds with false, if a callback shall be unregistered for a invalid message type", function () {
                 socket.registerCallback(socket.eventType.MESSAGE, f);
                 expect(socket.unregisterCallback("socket.eventType.MESSAGE", f)).toBe(false);
             });
-            it("TODO: Try to unregister Callback which are not registered | Callback dont get unregistered", function () {
+            it("Responds with false, if a callback shall be unregistered, which are not registered before", function () {
                 expect(socket.unregisterCallback(socket.eventType.MESSAGE, f)).toBe(false);
             });
         });

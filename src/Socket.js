@@ -9,7 +9,7 @@ define([
      * @throws {TypeError} - If passed url is not a string
      * @param {Object} options - options object
      * @param {String} options.url - web socket connection url
-     */
+     */  
     var Socket = function (options) {
         if (TypeCheck.isString(options.url)) {
             this._socket = new WebSocket(options.url);

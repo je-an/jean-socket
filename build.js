@@ -1,8 +1,9 @@
 ({
     baseUrl: '.',
-    out: 'dist/Socket.js',
-    optimize: 'none',
-    include: ["node_modules/almond/almond", "src/Socket"],
+    out: 'dist/jean-socket.js',
+    optimize: 'uglify2',
+    name: "node_modules/jean-amd/dist/jean-amd",
+    include: ["src/Socket"],
     wrap: {
         start: 
         "(function (root, factory) { \n" +
