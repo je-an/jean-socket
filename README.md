@@ -1,29 +1,40 @@
 ## Description
 
-Provides a wrapper for browser-side WebSockets
+Provides a client for browser-side WebSockets
+
+## Support
+Supports both CommonJS and AMD eco system. If there is no loader, Socket is registered as a browser variable.
 
 ## Code Example
-
+- Use it as browser variable
+```js
+var socket = new Socket({ url: "www.example.com" });
+// Send a message to the server
+socket.sendMessage({ msg: "Message to server" });
+//  Register callback for onopen event
+socket.registerCallback(socket.eventType.OPEN, function(){
+    // Called when socket connection is open
+});
+// Register callback for onmessage event
+socket.registerCallback(socket.eventType.MESSAGE, function(msg){
+    // Called when socket get a message from backend
+    // <msg> is already parsed from JSON to object
+});
+// Register a callback to show how unregistration is done
+var scratchFn = function(){};
+socket.registerCallback(socket.eventType.MESSAGE, scratchFn);
+// Unregister the function
+socket.unregisterCallback(socket.eventType.MESSAGE, scratchFn);
+```
+- Use with require.js
 ```js
 require(["path/to/Socket"], function(Socket){
-    var socket = new Socket({ url: "www.example.com" });
-    // Send a message to the server
-    socket.sendMessage({ msg: "Message to server" });
-    //  Register callback for onopen event
-    socket.registerCallback(socket.eventType.OPEN, function(){
-        // Called when socket connection is open
-    });
-    //  Register callback for onmessage event
-    socket.registerCallback(socket.eventType.MESSAGE, function(msg){
-        // Called when socket get a message from backend
-        // <msg> is already parsed from JSON to object
-    });
-    // Register a callback to show how unregistration is done
-    var scratchFn = function(){};
-    socket.registerCallback(socket.eventType.MESSAGE, scratchFn);
-    // Unregister the function
-    socket.unregisterCallback(socket.eventType.MESSAGE, scratchFn);
+    // Work with Socket
 });
+```
+- Use with node.js
+```js
+var Socket = require("jean-socket");
 ```
 
 ## Installation

@@ -1,8 +1,8 @@
 {
   "name": "jean-socket",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Provides a wrapper for browser-side WebSockets",
-  "main": "jean-socket.js",
+  "main": "dist/jean-socket.js",
   "scripts": {
     "test": "open spec/spec-runner.html in browser"
   },
@@ -16,9 +16,9 @@
   "author": "Jeremias Andris",
   "license": "MIT",
   "dependencies": {
-    "jean-amd": "0.0.5",
-    "jean-callback": "0.1.0",
-    "jean-type-check": "0.0.6"
+    "jean-amd": "1.0.1",
+    "jean-callback": "1.0.1",
+    "jean-type-check": "1.0.2"
   },
   "repository": {
     "type": "git",
