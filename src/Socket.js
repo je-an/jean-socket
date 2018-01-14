@@ -54,7 +54,7 @@ define([
      * Provides states for messages which shall be sended
      * @enum
      */
-    Socket.prototype.messageState = {
+    Socket.messageType = Socket.prototype.messageState = {
         SENT: "sent",
         CACHED: "cached"
     };
@@ -62,7 +62,7 @@ define([
      * Provides socket event types
      * @enum
      */
-    Socket.prototype.eventType = {
+    Socket.eventType = Socket.prototype.eventType = {
         OPEN: "onopen",
         MESSAGE: "onmessage",
         ERROR: "onerror",

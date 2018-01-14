@@ -1,6 +1,6 @@
 {
   "name": "jean-socket",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provides a wrapper for browser-side WebSockets",
   "main": "dist/jean-socket.js",
   "scripts": {
